@@ -19,9 +19,10 @@ You can basically use whatever license as long as it is permitted by carpet mod.
 
 ## Building
 
-run 
+run the following based on your platform:
 
 on windows `gradlew build`
+
 on linux `./gradlew build`
 
 the builds should show up in `build/libs/`
