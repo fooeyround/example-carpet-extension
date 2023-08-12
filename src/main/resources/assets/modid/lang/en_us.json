@@ -1,0 +1,24 @@
+{
+
+  "modid.rule.intSetting.desc": "Example integer setting",
+
+  "modid.rule.stringSetting.desc": "Example string type setting",
+  "modid.rule.stringSetting.extra.0": "This can take multiple values",
+  "modid.rule.stringSetting.extra.1": "that you can tab-complete in chat,",
+  "modid.rule.stringSetting.extra.2": "but it can take any value you want",
+
+  "modid.rule.optionSetting.desc": "Example enum setting",
+  "modid.rule.optionSetting.extra.1": "This is another string-type option",
+  "modid.rule.optionSetting.extra.0": "that conveniently parses and validates for you",
+
+
+
+  "modid.rule.boolSetting.desc": "Example bool setting",
+
+
+  "carpet.rule.uselessNumericalSetting.desc": "Example numerical setting with validator",
+
+  "carpet.rule.flyingPigs.desc": "Make pigs fly! (introduces lag)"
+
+
+}

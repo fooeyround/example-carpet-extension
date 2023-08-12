@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "carpet_extention.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"flyingPigs.PigEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
