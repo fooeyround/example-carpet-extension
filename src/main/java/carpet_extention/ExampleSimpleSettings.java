@@ -12,6 +12,9 @@ import static carpet.api.settings.RuleCategory.*;
 
 /**
  * Here is your example Settings class you can plug to use carpetmod /carpet settings command
+ *
+ * Descriptions, Extra and any other form of translation are handled by {@link ExtensionServer#canHasTranslations(String)} and stored in assets/modid/lang/
+ *
  */
 public class ExampleSimpleSettings
 {

@@ -7,6 +7,8 @@ import carpet.api.settings.RuleCategory.*;
 
 /**
  * Here is your example Settings class that will be a part of  /{@link ExtensionServer} settings command,
+ *
+ * Descriptions, Extra and any other form of translation are handled by {@link ExtensionServer#canHasTranslations(String)} and stored in assets/modid/lang/
  */
 public class ExampleOwnSettings {
 
