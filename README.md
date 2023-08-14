@@ -2,7 +2,7 @@
 
 
 
-Replace the MODID Strong in the ExampleServer (and rename it) to your own. 
+Replace the MODID String in the ExampleServer (and rename it) to your own. 
 this is meant as a guide, so you can remove the `flyingPigs` rule, as it is just an example.
 `flyingPigs` shows a good practice wih mixin grouping. It is your mod though, you can do what you wish and structure it how you wish.
 
