@@ -4,9 +4,11 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.SettingsManager;
+import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
 import carpet.utils.Translations;
 import carpet_extention.commands.ExampleCommand;
+import carpet_extention.logger.ExtentionLoggers;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.api.ModInitializer;
@@ -76,6 +78,11 @@ public class ExtensionServer implements ModInitializer, CarpetExtension {
 	}
 
 
+
+	@Override
+	public void registerLoggers() {
+		ExtentionLoggers.initLoggers();
+	}
 
 	@Override
 	public SettingsManager extensionSettingsManager() {

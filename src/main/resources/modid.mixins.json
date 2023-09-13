@@ -1,11 +1,12 @@
 {
-	"required": true,
-	"package": "carpet_extention.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"flyingPigs.PigEntityMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "carpet_extention.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "logger.BlockMixin",
+    "flyingPigs.PigEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }
