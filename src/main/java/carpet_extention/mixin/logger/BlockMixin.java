@@ -2,11 +2,10 @@ package carpet_extention.mixin.logger;
 
 
 import carpet.logging.LoggerRegistry;
+import carpet_extention.logger.ExampleLoggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
@@ -20,17 +19,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class BlockMixin {
 
 
-    @Inject(method = "afterBreak", at= @At("HEAD"))
-    private static void carpet_example$block_logger(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci) {
-        if (!world.isClient()) {
+    @Inject(method = "onBreak", at= @At("HEAD"))
+    private void carpet_example$block_logger(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo ci) {
+        if (ExampleLoggers.__block_break && !world.isClient()) {
 
-
-
-
-
-            LoggerRegistry.getLogger("block_logger").log(() -> new MutableText[]{
-                    Text.literal("Block Broken at "+pos.toShortString()),
-                    Text.literal("Type: "+ state.getBlock().getName())
+            //Works for players in survival
+            LoggerRegistry.getLogger("block_break").log(() -> new MutableText[]{
+                    Text.literal("Block Broken at " + pos.toShortString()),
+                    Text.literal("Type: " + state.getBlock().getName().getString()),
+                    Text.literal("Player: " + player.getName().getString())
             });
         }
     }
