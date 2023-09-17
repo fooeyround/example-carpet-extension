@@ -4,15 +4,20 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.SettingsManager;
+import carpet.logging.HUDController;
+import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
 import carpet.utils.Translations;
 import carpet_extention.commands.ExampleCommand;
+import carpet_extention.logger.ExampleLoggers;
+import carpet_extention.logger.ExampleHUDController;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,6 +73,10 @@ public class ExtensionServer implements ModInitializer, CarpetExtension {
 		//only observes rules from the settings managers it has been registered to.
 		// use registerGlobalObserver to observe rules from all settings managers (that allow for this feature)
 		CarpetServer.settingsManager.registerRuleObserver(ExtensionServer::exampleRuleObserver);
+		SettingsManager.registerGlobalRuleObserver(ExtensionServer::settings_change$globalRuleObserver);
+
+
+		HUDController.register(ExampleHUDController::addToHud);
 	}
 
 	@Override
@@ -76,6 +85,11 @@ public class ExtensionServer implements ModInitializer, CarpetExtension {
 	}
 
 
+
+	@Override
+	public void registerLoggers() {
+		ExampleLoggers.initLoggers();
+	}
 
 	@Override
 	public SettingsManager extensionSettingsManager() {
@@ -101,6 +115,15 @@ public class ExtensionServer implements ModInitializer, CarpetExtension {
 					serverCommandSource.getServer(),
 					"Ehlo everybody, "+serverCommandSource.getPlayer().getName().getString()+" is cheating..."
 			);
+		}
+	}
+
+
+	public static void settings_change$globalRuleObserver(ServerCommandSource serverCommandSource, CarpetRule<?> currentRuleState, String originalUserTest) {
+		if (ExampleLoggers.__setting_change) {
+			LoggerRegistry.getLogger("setting_change").log(() -> new MutableText[]{
+					Text.empty().append(Text.literal("Setting: " + currentRuleState.name())).append(" Set to: " + currentRuleState.value()).append(" By: " + serverCommandSource.getDisplayName())
+			});
 		}
 	}
 }
