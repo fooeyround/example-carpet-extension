@@ -4,11 +4,13 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.api.settings.CarpetRule;
 import carpet.api.settings.SettingsManager;
+import carpet.logging.HUDController;
 import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
 import carpet.utils.Translations;
 import carpet_extention.commands.ExampleCommand;
 import carpet_extention.logger.ExampleLoggers;
+import carpet_extention.logger.ExampleHUDController;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ModInitializer;
 
@@ -72,6 +74,9 @@ public class ExtensionServer implements ModInitializer, CarpetExtension {
 		// use registerGlobalObserver to observe rules from all settings managers (that allow for this feature)
 		CarpetServer.settingsManager.registerRuleObserver(ExtensionServer::exampleRuleObserver);
 		SettingsManager.registerGlobalRuleObserver(ExtensionServer::settings_change$globalRuleObserver);
+
+
+		HUDController.register(ExampleHUDController::addToHud);
 	}
 
 	@Override
